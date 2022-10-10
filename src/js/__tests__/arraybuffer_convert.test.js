@@ -2,17 +2,14 @@ import ArrayBufferConverter from '../arraybuffer_convert';
 import getBuffer from '../getbuffer';
 
 test.each([
-  '{"data":{"user":{"id":1,"name":"Hitman","level":10}}}',
+  '{"someData":{"user":{"id":1,"name":"Daemon","level":10}}}',
+  '{"":{"user":{"id":"123","name":"Zombie","attack":100}}}',
   '{}',
-  '{"data":{"user":{"id":1,"name":"Hitman","level":20}}}',
-])('Testing class ArrayBufferConverter...', (expected) => {
+])('Should test class ArrayBufferConverter', (expected) => {
   const arrayBuffer = new ArrayBufferConverter();
-  const data = getBuffer(expected);
+  const someData = getBuffer(expected);
 
-  arrayBuffer.load(data);
+  arrayBuffer.load(someData);
   const recieved = arrayBuffer.toString();
-
-  // console.log('exp - ', expected);
-  // console.log('rec - ', recieved);
   expect(expected).toEqual(recieved);
 });
